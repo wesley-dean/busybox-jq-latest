@@ -1,0 +1,48 @@
+---
+name: Generate Releases
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions: read-all
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: "Checkout"
+        id: "checkout"
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # pin@v3
+
+      - name: "Custom variables"
+        id: "customvars"
+        shell: "bash"
+        run: |
+          (
+          echo "VERSION=\"$(jq --version | sed -Ee 's/jq-//')\""
+          ) >> "$GITHUB_OUTPUT"
+
+      - name: "Generate release notes"
+        id: "release_notes"
+        uses: RedCrafter07/release-notes-action@31674bfa3a219e7c661fc0c5b7b3851c741b9965 # pin@v1.0.1
+        with:
+          tag-name: ${{ steps.customvars.outputs.VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Create release"
+        id: "create_release"
+        uses: ncipollo/release-action@440c8c1cb0ed28b9f43e4d1d670870f059653174 # pin@v1
+        with:
+          body: "${{ steps.release_notes.outputs.release_notes }}"
+          tag: "${{ steps.customvars.outputs.VERSION }}"
+          allowUpdates: true

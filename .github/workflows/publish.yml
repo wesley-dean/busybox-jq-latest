@@ -24,7 +24,8 @@ jobs:
         with:
           dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub_token: ${{ secrets.DOCKERHUB_PAT }}
-          gchr_token: ${{ secrets.GHCR_PAT }}
-          gchr_username: ${{ secrets.GHUB_USERNAME }}
+          ghcr_token: ${{ secrets.GHCR_PAT }}
+          ghcr_username: ${{ secrets.GHUB_USERNAME }}
           github_ref: ${{ github.ref }}
           repository_name: ${{ github.event.repository.name }}
+          platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
