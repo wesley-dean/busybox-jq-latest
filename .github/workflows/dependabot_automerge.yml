@@ -1,9 +1,9 @@
 ---
 name: Dependabot auto-merge
 # yamllint disable-line rule:truthy
-on: 
+on:
   pull_request:
-    workflow_dispatch:
+  workflow_dispatch:
 
 permissions:
   contents: write
