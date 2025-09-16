@@ -10,11 +10,11 @@ The 'jq' binary is set as the entrypoint for the image, so it can be run by pipi
 JSON content to Docker Run:
 
 ```sh
-cat file.json | docker run -it --rm wesleydeanflexion/busybox-jq '.'
+cat file.json | docker run -it --rm wesleydean/busybox-jq '.'
 ```
 
 Alternatively, I've included a script, 'busybox-jq' that does the above (plus
-the requesite 'tty' magic), so this will accomplish the same thing:
+the requisite 'tty' magic), so this will accomplish the same thing:
 
 ```sh
 cat file.json | ./busybox-jq '.'
@@ -47,9 +47,9 @@ but Docker is (and we can pull / run Docker images).
 My role in this is just to build and slap in 'jq'; the fine authors of BusyBox
 and JQ did the real heavy lifting.
 
-* [https://github.com/mirror/busybox]
-* [https://github.com/stedolan/jq]
+* [busybox](https://github.com/mirror/busybox)
+* [jq](https://github.com/stedolan/jq)
 
-Me, I'm a DevSecOps Engineer with Flexion:
+Me, I'm a DevSecOps Engineer.
 
-* [https://flexion.us/]
+* [wesleydean.com](https://wesleydean.com/)
