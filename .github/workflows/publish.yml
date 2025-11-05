@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # pin@v3
 
       - name: Build and Publish Image
-        uses: wesley-dean/publish_container@ffa3e78f3ea925908bbfc0f1b8fd01e57d0f09f9 # pin@v1.0.9
+        uses: wesley-dean/publish_container@946045c57bb0ddff06ccfda854b388f60b0d6ac6 # pin@v1.0.10
         with:
           dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub_token: ${{ secrets.DOCKERHUB_PAT }}
