@@ -41,7 +41,7 @@ jobs:
 
       - name: "Create release"
         id: "create_release"
-        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # pin@v1
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # pin@v1
         with:
           body: "${{ steps.release_notes.outputs.release_notes }}"
           tag: "${{ steps.customvars.outputs.VERSION }}"
