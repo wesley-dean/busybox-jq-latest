@@ -1,4 +1,4 @@
-FROM alpine:3.21.0 AS builder
+FROM alpine:3.24.4 AS builder
 
 # renovate: datasource=repology depName=alpine_3_17/git versioning=loose
 ENV GIT_VERSION="2.47"
@@ -34,7 +34,7 @@ RUN git submodule update --init \
   && strip jq
 
 # hadolint ignore=DL3007
-FROM busybox:1.37.0
+FROM busybox:1.38.0
 COPY --from=builder /workdir/jq/jq /bin/
 RUN chmod 755 /bin/jq
 USER nobody
