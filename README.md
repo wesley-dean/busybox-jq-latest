@@ -42,6 +42,22 @@ setup so you're welcome to use mine:
 This is a convenient (to me) way to use 'jq' on systems where jq is not installed
 but Docker is (and we can pull / run Docker images).
 
+## Dependency maintenance
+
+Routine GitHub Actions dependency updates are managed by the centrally hosted
+Jenkins Renovate job, with repository enrollment in root `renovate.json`.
+The existing Dependabot configuration disables scheduled version-update PRs
+but retains independent Dependabot security-update handling and its bot-scoped
+auto-merge workflow.  Required review and CI protections are not changed.
+
+The historical `.github/renovate.js` was a standalone Renovate runner
+configuration referencing the former `wesley-dean-flexion` repository owner,
+including auto-merge settings.  It has been retired in favor of centralized
+runner configuration.  One unverified `publish_container` action SHA has
+been replaced by the former `v1.1.0` version reference for Renovate to
+resolve and pin, which temporarily reduces supply-chain immutability;
+review the ensuing Renovate update before merging it.
+
 ## Who wrote this
 
 My role in this is just to build and slap in 'jq'; the fine authors of BusyBox
