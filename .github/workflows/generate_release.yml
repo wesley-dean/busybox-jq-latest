@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: "Checkout"
         id: "checkout"
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pin@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: "Custom variables"
         id: "customvars"
@@ -34,14 +34,14 @@ jobs:
 
       - name: "Generate release notes"
         id: "release_notes"
-        uses: RedCrafter07/release-notes-action@304edb57ff4d0cb822b39a00556c015790dee977 # pin@v1.0.2
+        uses: RedCrafter07/release-notes-action@304edb57ff4d0cb822b39a00556c015790dee977 # v1.0.2
         with:
           tag-name: ${{ steps.customvars.outputs.VERSION }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Create release"
         id: "create_release"
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # pin@v1
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
         with:
           body: "${{ steps.release_notes.outputs.release_notes }}"
           tag: "${{ steps.customvars.outputs.VERSION }}"
